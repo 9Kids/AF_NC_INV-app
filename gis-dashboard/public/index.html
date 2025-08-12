@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>ZIP Influence Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="./styles.css"/>
+  <!-- Plotly (latest) -->
+  <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+  <!-- Turf -->
+  <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
+  <!-- kdbush + geokdbush -->
+  <script src="https://cdn.jsdelivr.net/npm/kdbush@4.0.2/kdbush.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/geokdbush@2.0.1/geokdbush.min.js"></script>
+</head>
+<body>
+  <div class="toolbar">
+    <select id="stateSelect">
+      <option value="DE">Delaware</option>
+      <option value="CA">California</option>
+      <option value="TX">Texas</option>
+      <option value="NY">New York</option>
+      <option value="FL">Florida</option>
+      <!-- add more, or we can auto-populate -->
+    </select>
+
+    <input id="zipInput" placeholder="Filter: ZIP(s) e.g. 94107, 10001"/>
+    <input id="countyInput" placeholder="Filter: County FIPS e.g. 06075"/>
+    <button id="applyFilters">Apply Filters</button>
+
+    <input id="radiusMiles" type="number" min="1" step="1" value="10" />
+    <button id="drawRadius">Draw Radius from Selected</button>
+
+    <label><input type="checkbox" id="toggleZips" checked/> ZIPs</label>
+    <label><input type="checkbox" id="toggleCounties"/> Counties</label>
+    <label><input type="checkbox" id="toggleStates" checked/> States</label>
+  </div>
+
+  <div id="map" class="map"></div>
+
+  <script type="module" src="../src/app.js"></script>
+</body>
+</html>

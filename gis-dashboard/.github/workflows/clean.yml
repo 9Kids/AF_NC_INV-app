@@ -1,0 +1,21 @@
+name: Clean Dealers
+on:
+  push:
+    paths:
+      - 'data/dealers_raw.csv'
+      - 'scripts/**'
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { persist-credentials: true }
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - run: npm ci
+      - run: node scripts/clean_dealers.js
+      - name: Commit results
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(clean): update dealers_clean.csv + log"
+          file_pattern: "data/dealers_clean.csv data/cleaning-run.json"
